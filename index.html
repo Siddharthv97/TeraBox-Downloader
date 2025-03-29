@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeraBox Downloader</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container mt-5 flex flex-col justify-center items-center gap-[5rem] ">
+            <div class="title">
+                <h1 class="text-4xl text-center font-bold">TeraBox Downloader</h1>
+            </div>
+            <div class="url-container ">
+                <input type="text" placeholder="Paste terabox link..." class="w-96  p-2 border rounded" id="inputBox">
+                <button class="bg-blue-500 px-5 py-2 rounded text-white cursor-pointer font-semibold"
+                    onclick="fetchVideoData()">Fetch
+                    File</button>
+            </div>
+        </div>
+        <div class="file_container text-center mt-10">
+            <h1 class="font-bold m-5" id="videoTitle">Title : <span id="title"></span></h1>
+            <p class="m-5" id="videoDes">File Size <span id="fileSize"></span></p>
+            <div class="download_options">
+                <a id="btnDownload" download rel="noreferrer noopener"
+                    class="bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded text-white inline-flex gap-2 items-center cursor-pointer">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>Download
+                </a>
+                <a id="btnFastDownload" download rel="noreferrer noopener"
+                    class="bg-green-500 hover:bg-green-600 py-1 px-3 rounded text-white inline-flex gap-2 items-center cursor-pointer py-2 px-4">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg> Fast Download</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+
+        async function fetchVideoData() {
+
+            const inputUrl = document.getElementById('inputBox').value;
+            const videoTitle = document.getElementById('videoTitle');
+            const title = document.getElementById('title');
+            const videoDesc = document.getElementById('videoDes');
+            const fileSize = document.getElementById('fileSize');
+            const btnDownload = document.getElementById('btnDownload');
+            const FastDownload = document.getElementById('btnFastDownload');
+
+            // const apiKey = 'https://web.teraboxfast.workers.dev/?url=';
+
+            let id = inputUrl.split('=').pop();
+
+            // await fetch(`https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=`).then(response => response.json()).then(videoData => {
+
+            //     title.innerText = videoData.data.title;
+            //     fileSize.innerText = videoData.data.size;
+            //     btnDownload.href = videoData.data.downloadUrl;
+            //     FastDownload.href = videoData.data.directdwn;
+
+            // })
+
+            fetch(`https://terabox.courseuniverse.workers.dev/?id=${id}`)
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error(error));
+
+        }
+
+        // https://wholly-api.skinnyrunner.com/get/website-data.php?get_html=https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=
+
+    </script>
+</body>
+
+</html>
