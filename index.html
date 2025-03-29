@@ -60,21 +60,16 @@
 
             let id = inputUrl.split('=').pop();
 
-            // await fetch(`https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=`).then(response => response.json()).then(videoData => {
+            await fetch(`https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=`).then(response => response.json()).then(videoData => {
 
-            //     title.innerText = videoData.data.title;
-            //     fileSize.innerText = videoData.data.size;
-            //     btnDownload.href = videoData.data.downloadUrl;
-            //     FastDownload.href = videoData.data.directdwn;
+                title.innerText = videoData.data.title;
+                fileSize.innerText = videoData.data.size;
+                btnDownload.href = videoData.data.downloadUrl;
+                FastDownload.href = videoData.data.directdwn;
 
-            // })
+            })
 
-            fetch(`https://terabox.courseuniverse.workers.dev/?id=${id}`)
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
 
-        }
 
         // https://wholly-api.skinnyrunner.com/get/website-data.php?get_html=https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=
 
