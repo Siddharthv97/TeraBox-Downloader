@@ -1,79 +1,270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeraBox Downloader</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
+    <!-- Font awesome CDN  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
 
-<body>
-    <main>
-        <div class="container mt-5 flex flex-col justify-center items-center gap-[5rem] ">
-            <div class="title">
-                <h1 class="text-4xl text-center font-bold">TeraBox Downloader</h1>
+  <body class="bg-gray-800 text-white">
+    <header class="bg-gradient-to-b from-gray-900 to-gray-800 shadow-2xl">
+      <div class="container mx-auto">
+        <nav>
+          <div
+            class="navbar px-6 py-2 md:py-4 flex flex-wrap justify-between items-center"
+          >
+            <a href="/" class="flex items-center gap-1.5">
+              <img src="./img/tblogo.png" alt="" class="max-w-[36px]" />
+              <span class="font-bold">Tera Box</span>
+            </a>
+            <button
+              data-collapse-toggle="navbar-default"
+              id="menuBar"
+              type="button"
+              class="p-2 w-10 h-10 rounded-[6px] hover:bg-gray-100 md:hidden"
+            >
+              <i
+                onclick="toggleBtn()"
+                class="fa-solid fa-bars text-2xl"
+                id="menuIcon"
+              ></i>
+            </button>
+
+            <div
+              class="hidden absolute top-14 left-0 py-6 bg-gray-800 md:static md:bg-transparent md:py-0 w-full md:block md:w-auto items-center"
+              id="navbar-default"
+            >
+              <ul
+                class="nav_menu flex flex-col gap-2 items-center md:flex-row md:gap-3 lg:gap-6"
+              >
+                <li class="nav_items">
+                  <a
+                    href="#"
+                    class="nav_links md:text-[14px] lg:text-[16px] opacity-80 transition duration-200 hover:opacity-100"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav_items">
+                  <a
+                    href="#"
+                    class="nav_links md:text-[14px] lg:text-[16px] opacity-80 transition duration-200 hover:opacity-100"
+                    >Disclaimer</a
+                  >
+                </li>
+                <li class="nav_items">
+                  <a
+                    href="#"
+                    class="nav_links md:text-[14px] lg:text-[16px] opacity-80 transition duration-200 hover:opacity-100"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li class="nav_items">
+                  <a
+                    href="#"
+                    class="nav_links md:text-[14px] lg:text-[16px] opacity-80 transition duration-200 hover:opacity-100"
+                    >Terms of Services</a
+                  >
+                </li>
+                <li class="nav_items">
+                  <a
+                    href="#"
+                    class="nav_links md:text-[14px] lg:text-[16px] opacity-80 transition duration-200 hover:opacity-100"
+                    >About</a
+                  >
+                </li>
+                <li class="nav_items">
+                  <a
+                    href="#"
+                    class="nav_links md:text-[14px] lg:text-[16px] opacity-80 transition duration-200 hover:opacity-100"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
             </div>
-            <div class="url-container ">
-                <input type="text" placeholder="Paste terabox link..." class="w-96  p-2 border rounded" id="inputBox">
-                <button class="bg-blue-500 px-5 py-2 rounded text-white cursor-pointer font-semibold"
-                    onclick="fetchVideoData()">Fetch
-                    File</button>
-            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="hero" class="px-6 py-8">
+      <div class="container flex flex-col items-center md:gap-4 mx-auto">
+        <div class="pt-6">
+          <h1 class="text-center text-5xl font-bold">
+            TeraBox Video Downloader
+          </h1>
+          <p class="text-center py-4 text-gray-400">
+            Download, embed and share Terabox videos seamlessly
+          </p>
         </div>
-        <div class="file_container text-center mt-10">
-            <h1 class="font-bold m-5" id="videoTitle">Title : <span id="title"></span></h1>
-            <p class="m-5" id="videoDes">File Size <span id="fileSize"></span></p>
-            <div class="download_options">
-                <a id="btnDownload" download rel="noreferrer noopener"
-                    class="bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded text-white inline-flex gap-2 items-center cursor-pointer">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12"
-                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>Download
-                </a>
-                <a id="btnFastDownload" download rel="noreferrer noopener"
-                    class="bg-green-500 hover:bg-green-600 py-1 px-3 rounded text-white inline-flex gap-2 items-center cursor-pointer py-2 px-4">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M17 17H17.01M17.4 14H18C18.9319 14 19.3978 14 19.7654 14.1522C20.2554 14.3552 20.6448 14.7446 20.8478 15.2346C21 15.6022 21 16.0681 21 17C21 17.9319 21 18.3978 20.8478 18.7654C20.6448 19.2554 20.2554 19.6448 19.7654 19.8478C19.3978 20 18.9319 20 18 20H6C5.06812 20 4.60218 20 4.23463 19.8478C3.74458 19.6448 3.35523 19.2554 3.15224 18.7654C3 18.3978 3 17.9319 3 17C3 16.0681 3 15.6022 3.15224 15.2346C3.35523 14.7446 3.74458 14.3552 4.23463 14.1522C4.60218 14 5.06812 14 6 14H6.6M12 15V4M12 15L9 12M12 15L15 12"
-                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg> Fast Download</a>
-            </div>
+        <div class="w-full md:max-w-[50%]">
+          <form method="post" class="w-full md:flex md:flex-col items-center">
+            <input
+              type="text"
+              placeholder="Paste your TeraBox URL here..."
+              class="w-full border-[1px] border-solid border-gray-400 p-3 rounded md:text-2xl focus:border-[1px] focus:border-solid focus:border-blue-500"
+              id="inputUrl"
+            />
+            <button
+              type="submit"
+              class="bg-blue-600 w-full font-medium md:max-w-2xs mt-5 p-2.5 rounded hover:bg-blue-700"
+              id="submitBtn"
+            >
+              Get Video
+            </button>
+          </form>
         </div>
-    </main>
+      </div>
+    </section>
+
+    <section id="video_Section" class="px-6 py-8">
+      <div class="container border-2 mx-auto">
+        <img src="" alt="" id="thumbnail" />
+        <video src="" id="videoPlayer" controls class="w-[50%] mx-auto"></video>
+      </div>
+    </section>
+
+    <section id="premium" class="px-6 py-8">
+      <div
+        class="container bg-gray-700 py-6 rounded-[8px] mx-auto md:max-w-[75%] lg:max-w-[60%] xl:max-w-[40%] 2xl:max-w-[25%]"
+      >
+        <h1
+          class="text-center pb-3 font-bold text-2xl text-blue-400 md:text-4xl"
+        >
+          Premium Membership
+        </h1>
+
+        <div class="px-6 mt-3 flex flex-col items-center">
+          <div class="bg-gray-800 rounded-[8px] py-6 w-full">
+            <p
+              class="text-center pt-6 pb-3 font-semibold md:flex md:gap-2 md:justify-center"
+            >
+              <span class="text-xl line-through text-gray-400 md:text-4xl"
+                >₹999</span
+              >
+              <span class="text-xl text-green-300 md:text-4xl">₹399</span>
+              <span class="text-xl text-amber-300 md:text-4xl">(60% OFF)</span>
+            </p>
+            <p class="text-center text-amber-300 font-semibold md:text-2xl">
+              Limited Time Offer Ends Soon
+            </p>
+            <div
+              class="timer flex flex-row justify-center gap-1.5 md:gap-4 mt-6 items-center"
+            >
+              <span
+                class="inline-block bg-gray-500 text-center rounded px-2.5 py-1.5 font-bold text-amber-300 md:text-2xl"
+                id="day"
+                >1d</span
+              >
+              <span
+                class="inline-block bg-gray-500 text-center rounded px-2.5 py-1.5 font-bold text-amber-300 md:text-2xl"
+                id="hours"
+                >12h</span
+              >
+              <span
+                class="inline-block bg-gray-500 text-center rounded px-2.5 py-1.5 font-bold text-amber-300 md:text-2xl"
+                id="minutes"
+                >36m</span
+              >
+              <span
+                class="inline-block bg-gray-500 text-center rounded px-2.5 py-1.5 font-bold text-amber-300 md:text-2xl"
+                id="second"
+                >24s</span
+              >
+            </div>
+          </div>
+          <button
+            class="bg-green-500 hover:bg-green-600 px-6 py-3 md:px-9 rounded-[6px] mt-4 inline-block w-fit md:text-2xl"
+          >
+            <i class="fa-solid fa-crown"></i
+            ><span class="ml-1 font-semibold">Get Premium</span>
+          </button>
+
+          <p class="text-[12px] mt-6 text-center text-gray-300 md:text-xl">
+            Need help? Contact our support team at
+            <a href="mailto:support@example.com" class="text-blue-400"
+              >Support@example.com</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer" class="bg-gray-900 px-6 py-8">
+      <div class="container mx-auto">
+        <nav>
+          <ul
+            class="flex flex-wrap *:grow *:capitalize *:px-2 *:py-2 *:gap-5 *:text-[16px] *:text-center hover:*:text-blue-400 md:*:text-xl *:text-gray-400"
+          >
+            <li><a href="#">privacy policy</a></li>
+            <li><a href="#">terms of service</a></li>
+            <li><a href="#">disclaimer</a></li>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">contact</a></li>
+            <li><a href="#">dmca</a></li>
+          </ul>
+        </nav>
+        <div class="copyright mt-5 capitalize text-center">
+          <p>
+            copyright &copy; 2025 <span class="text-blue-400">terabox</span> -
+            all right reserved
+          </p>
+        </div>
+      </div>
+    </footer>
 
     <script>
+      // Mobile Menu Start
 
-        async function fetchVideoData() {
+      const toggleBtn = () => {
+        let menuIcon = document.querySelector("#menuIcon");
+        const navbar = document.querySelector("#navbar-default");
+        menuIcon.classList.toggle("fa-xmark");
+        navbar.classList.toggle("hidden");
+      };
 
-            const inputUrl = document.getElementById('inputBox').value;
-            const videoTitle = document.getElementById('videoTitle');
-            const title = document.getElementById('title');
-            const videoDesc = document.getElementById('videoDes');
-            const fileSize = document.getElementById('fileSize');
-            const btnDownload = document.getElementById('btnDownload');
-            const FastDownload = document.getElementById('btnFastDownload');
+      // Mobile Menu end
 
-            // const apiKey = 'https://web.teraboxfast.workers.dev/?url=';
+      // Url Field start
 
-            let id = inputUrl.split('=').pop();
+      let inputUrl = document.querySelector("#inputUrl");
+      let submitBtn = document.querySelector("#submitBtn");
+      let videoPlayer = document.querySelector('#videoPlayer');
 
-            await fetch(`https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=`).then(response => response.json()).then(videoData => {
+      submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-                title.innerText = videoData.data.title;
-                fileSize.innerText = videoData.data.size;
-                btnDownload.href = videoData.data.downloadUrl;
-                FastDownload.href = videoData.data.directdwn;
+        let apiUrl =
+          "https://teraboxdownloaderonline.com/api/download-m3u8?terabox_link=";
+        let videoUrl = inputUrl.value;
 
-            });
+        fetch(`${apiUrl}/${videoUrl}`)
+          .then((response) => response.blob())
+          .then((myBlob) => {
+            const videoData = URL.createObjectURL(myBlob);
 
+            videoPlayer.src = videoData;
+            console.log(videoData);
+          });
+      });
 
+      //   urlField.addEventListener("submit", (e) => {
+      //     e.preventDefault();
+      //     console.log(urlField)
+      //   });
 
-        // https://wholly-api.skinnyrunner.com/get/website-data.php?get_html=https://terabox.hnn.workers.dev/api/get-info?shorturl=${id}&pwd=
+      // Url Field End
 
+      // Subscription Timer Start
+
+      setInterval(() => {}, 1000);
+
+      // Subscription Timer End
     </script>
-</body>
-
+  </body>
 </html>
